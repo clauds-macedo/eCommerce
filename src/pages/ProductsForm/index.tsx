@@ -7,11 +7,11 @@ import Input from "../../components/Input"
 import { Trash, FilePlus } from 'phosphor-react'
 
 interface FormData {
-  id: string
   descricao: {
     pt: string
     en: string
   },
+  id: string
   imagem_link: string
   nome: string
   preco: number
@@ -32,9 +32,9 @@ function ProductsForm() {
       const col = collection(db, 'products');
       const snapshot = await getDocs(col);
       
-      const productsData = snapshot.docs.map(doc => doc.data())
-      
-      // setProducts(productsData)
+      const productsData = snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+  
+      setProducts(productsData)
     }
     getItems()
   }, [])
@@ -51,7 +51,7 @@ function ProductsForm() {
     reset()
   }
 
-  
+
   const deleteProduct:SubmitHandler<FormId> = async (data, {reset}) => {
     try {
       await deleteDoc(doc(db, 'products', data.id))
