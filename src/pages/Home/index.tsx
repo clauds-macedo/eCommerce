@@ -1,6 +1,4 @@
-import React from "react";
 import Icon from "../../utils/IconChoice";
-import { User, FileSearch } from "phosphor-react";
 
 const Home = () => {
     return (
