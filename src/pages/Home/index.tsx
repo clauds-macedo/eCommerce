@@ -1,5 +1,6 @@
 import React from "react";
-import {Smartwatch} from '../../assets/Smartwatch';
+import Icon from "../../utils/IconChoice";
+import { User, FileSearch } from "phosphor-react";
 
 const Home = () => {
     return (
@@ -8,7 +9,7 @@ const Home = () => {
             <div className="flex flex-row align-center justify-center gap-2 pt-7 space-x-96">
                 {/* Logo */}
                 <div className="flex">
-                    <Smartwatch/>
+                    <Icon name="smartwatch"/>
                     <h2>SmartShop</h2>
                 </div>
                 {/* Links */}
@@ -20,9 +21,9 @@ const Home = () => {
                 </ul>
                 {/* Icons */}
                 <ul className="flex flex-row align-center gap-2">
-                    <li>Buscar</li>
-                    <li>Perfil</li>
-                    <li>Carrinhunnn</li>
+                    <li><Icon name="user"/></li>
+                    <li><Icon name="search"/></li>
+                    <li><Icon name="cart"/></li>
                 </ul>
             </div>
         </div>

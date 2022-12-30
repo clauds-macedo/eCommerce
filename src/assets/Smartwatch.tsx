@@ -1,4 +1,4 @@
-export const Smartwatch = () => {
+const Smartwatch = () => {
   return (
     <svg
       width="25"
@@ -28,3 +28,5 @@ export const Smartwatch = () => {
     </svg>
   );
 };
+
+export default Smartwatch;
