@@ -1,7 +1,4 @@
 import Smartwatch from "../assets/Smartwatch";
-import User from "../assets/User";
-import Search from "../assets/Search";
-import Cart from "../assets/Cart";
 import { User as PhosphorUser, ShoppingCart, MagnifyingGlass } from "phosphor-react";
 
 const defaultStyling = {
