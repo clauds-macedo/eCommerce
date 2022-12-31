@@ -6,7 +6,7 @@ import smartwatch from "../../assets/smartwatchimg.png";
 import "./style.css";
 import { Divide } from "hamburger-react";
 import Navbar, { navDirection } from "../../components/Navbar";
-import { HOME_NAV_LABELS } from "../../utils/consts";
+import { HOME_NAV_ICONS, HOME_NAV_LABELS } from "../../utils/consts";
 
 const Home = () => {
   const { language } = React.useContext(AppContext);
@@ -14,10 +14,13 @@ const Home = () => {
 
   return (
     <div className="custom-gradient w-screen h-screen overflow-hidden">
-      <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
+      <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""} justify-between items-center`}>
+        <h2>SmartShop</h2>
         <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
-          <div className={`${shownMenu ? "flex" : "hidden"} bg-neutral-700 w-screen h-screen opacity-95	absolute top-10 p-2 transition duration-150 ease-out`}>
-            <Navbar direction={navDirection.COLUMN} navbarLabels={HOME_NAV_LABELS}/>
+          <div className={`${shownMenu ? "flex" : "hidden"} flex-col bg-neutral-700 w-screen h-screen opacity-95	absolute top-10 p-2`}>
+            <Navbar direction={navDirection.COLUMN} navbarItem={HOME_NAV_LABELS}/>
+            {/* User section */}
+            <Navbar direction={navDirection.ROW} navbarItem={HOME_NAV_ICONS}/>
           </div>
       </div>
       {/* Header Container */}
@@ -28,19 +31,9 @@ const Home = () => {
           <h2>SmartShop</h2>
         </div>
         {/* Links */}
-        <Navbar direction={navDirection.ROW} navbarLabels={HOME_NAV_LABELS}/>
+        <Navbar direction={navDirection.ROW} navbarItem={HOME_NAV_LABELS}/>
         {/* Icons */}
-        <ul className="flex flex-row align-center gap-2">
-          <li>
-            <Icon name="user" />
-          </li>
-          <li>
-            <Icon name="search" />
-          </li>
-          <li>
-            <Icon name="cart" />
-          </li>
-        </ul>
+        <Navbar direction={navDirection.ROW} navbarItem={HOME_NAV_ICONS}/>
       </div>
 
       {/* Landing page info */}

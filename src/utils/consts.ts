@@ -1,1 +1,0 @@
-export const HOME_NAV_LABELS = ["Home", "Produtos", "Contato", "Sobre"];

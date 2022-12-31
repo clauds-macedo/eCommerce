@@ -4,16 +4,15 @@ export enum navDirection {
 }
 
 interface INavProps {
-  navbarLabels: Array<String>;
+  navbarItem: Array<String|React.ReactElement>;
   direction: navDirection;
 }
 
-const Navbar = ({ navbarLabels, direction }: INavProps) => {
-    console.log(navbarLabels, direction)
+const Navbar = ({ navbarItem, direction }: INavProps) => {
   return (
     <ul className={`flex flex-${direction} align-center gap-7`}>
-      {navbarLabels.map((label, index) => (
-        <li key={index}>{label}</li>
+      {navbarItem.map((item, index) => (
+        <li key={index}>{item}</li>
       ))}
     </ul>
   );
