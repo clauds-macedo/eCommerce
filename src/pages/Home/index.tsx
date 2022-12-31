@@ -56,7 +56,7 @@ const Home = () => {
       <div className="flex flex-col h-screen">
         <div className="flex sm:flex-col lg:flex-row gap-x-10 w-screen h-full justify-center justify-self-center p-5">
           <div className="flex align-center justify-center flex-col gap-y-5 sm:w-xl">
-            <h1 className="sm:self-center lg:self-start sm:text-3xl lg:text-6xl sm:max-w-5xl lg:max-w-xl">
+            <h1 className="sm:self-center lg:self-start sm:text-3xl lg:text-6xl sm:max-w-5xl lg:max-w-xl font-bold">
               {strings.mainText[language]}
             </h1>
             <p className="sm:self-center lg:self-start ml-0.5 text-[#8B8E99] max-w-xl text-sm">
@@ -77,7 +77,7 @@ const Home = () => {
           </div>
           <img
             src={smartwatch}
-            className="md:max-w-[115rem] sm:max-w-[16rem] self-center sm:max-h-[30rem] md:max-h-[140rem]"
+            className="2xl:max-w-[115rem] lg:max-w-[25rem] sm:max-w-[16rem] self-center sm:max-h-[30rem] md:max-h-[140rem]"
           />
         </div>
       </div>
