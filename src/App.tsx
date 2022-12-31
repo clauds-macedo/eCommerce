@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
 import { signInWithGoogle } from './auth/login-provider'
 import Home from './pages/Home'
+import ProductsForm from './pages/ProductsForm'
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
 
   
   return (
-    <Home/>
+    <ProductsForm/>
   )
 }
 
