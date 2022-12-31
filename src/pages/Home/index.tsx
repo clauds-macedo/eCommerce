@@ -14,10 +14,12 @@ const Home = () => {
 
   return (
     <div className="custom-gradient w-screen h-screen overflow-hidden">
-      <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""} justify-between items-center`}>
-        <h2>SmartShop</h2>
-        <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
-          <div className={`${shownMenu ? "flex" : "hidden"} flex-col bg-neutral-700 w-screen h-screen opacity-95	absolute top-10 p-2`}>
+      <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
+        <div className="flex justify-between items-center w-full px-2">
+          <h2>SmartShop</h2>
+          <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
+        </div>
+          <div className={`${shownMenu ? "flex" : "hidden"} flex-col bg-neutral-700 w-screen h-screen opacity-95 absolute top-10 p-4 mb-2 space-y-8`}>
             <Navbar direction={navDirection.COLUMN} navbarItem={HOME_NAV_LABELS}/>
             {/* User section */}
             <Navbar direction={navDirection.ROW} navbarItem={HOME_NAV_ICONS}/>
