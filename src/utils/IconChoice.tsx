@@ -4,7 +4,8 @@ import { IconProps } from "phosphor-react/dist/lib/";
 const defaultStyling = {
     width: 24,
     height: 24,
-    cursor: "pointer"
+    cursor: "pointer",
+    color: "white"
 }
 
 interface IconChoiceProps {
