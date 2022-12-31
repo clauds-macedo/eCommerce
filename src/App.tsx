@@ -3,6 +3,7 @@ import { db } from './config/firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
 import { signInWithGoogle } from './auth/login-provider'
+import Home from './pages/Home'
 
 function App() {
 
@@ -19,11 +20,7 @@ function App() {
 
   
   return (
-    <div className="App">
-      <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button>
-    </div>
+    <Home/>
   )
 }
 

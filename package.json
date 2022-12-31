@@ -9,13 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@unform/core": "^2.1.6",
-    "@unform/web": "^2.1.6",
+    "@chakra-ui/react": "^2.4.6",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "firebase": "^9.15.0",
     "firebase-tools": "^11.19.0",
+    "framer-motion": "^8.0.2",
+    "hamburger-react": "^2.5.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@unform/core": "^2.1.6",
+    "@unform/web": "^2.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
