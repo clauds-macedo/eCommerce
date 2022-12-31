@@ -1,16 +1,30 @@
-import { useContext } from "react";
+import React from "react";
 import { AppContext } from "../../context/context";
 import Icon from "../../utils/IconChoice";
 import { strings } from "../../utils/strings";
 import smartwatch from "../../assets/smartwatchimg.png";
+import "./style.css";
+import { Divide } from "hamburger-react";
 
 const Home = () => {
-  const { language } = useContext(AppContext);
+  const { language } = React.useContext(AppContext);
+  const [shownMenu, setShownMenu] = React.useState(false);
 
   return (
     <div className="custom-gradient w-screen h-screen overflow-hidden">
+      <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
+        <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
+          <div className={`${shownMenu ? "flex" : "hidden"} bg-neutral-700 w-screen h-screen opacity-95	absolute top-10 p-2 transition duration-150 ease-out`}>
+            <ul className="flex flex-col align-center gap-7">
+              <li>Home</li>
+              <li>Produtos</li>
+              <li>Contato</li>
+              <li>Sobre</li>
+            </ul>
+          </div>
+      </div>
       {/* Header Container */}
-      <div className="flex flex-row align-center justify-center gap-2 pt-7 justify-around">
+      <div className="sm:hidden md:flex flex-row align-center justify-center gap-2 pt-7 justify-around">
         {/* Logo */}
         <div className="flex">
           <Icon name="smartwatch" />
@@ -37,16 +51,21 @@ const Home = () => {
         </ul>
       </div>
 
-    {/* Landing page info */}
+      {/* Landing page info */}
       <div className="flex flex-col h-screen">
         <div className="flex sm:flex-col lg:flex-row gap-x-10 w-screen h-full justify-center justify-self-center p-5">
           <div className="flex align-center justify-center flex-col gap-y-5">
-            <h1 className="sm:self-center lg:self-start sm:text-4xl lg:text-6xl sm:max-w-5xl lg:max-w-xl">{strings.mainText[language]}</h1>
+            <h1 className="sm:self-center lg:self-start sm:text-4xl lg:text-6xl sm:max-w-5xl lg:max-w-xl">
+              {strings.mainText[language]}
+            </h1>
             <p className="sm:self-center lg:self-start ml-0.5 text-[#8B8E99] max-w-xl text-sm">
               {strings.subText[language]}
             </p>
           </div>
-          <img src={smartwatch} className="md:max-w-[115rem] sm:max-w-[16rem] self-center sm:max-h-[30rem] md:max-h-[140rem]"/>
+          <img
+            src={smartwatch}
+            className="md:max-w-[115rem] sm:max-w-[16rem] self-center sm:max-h-[30rem] md:max-h-[140rem]"
+          />
         </div>
       </div>
     </div>
