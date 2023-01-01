@@ -10,7 +10,7 @@ function ModalButton({ name, onAction, color } : ButtonProps) {
  return (
   <div 
     style={{background: color}}
-    className="flex items-center justify-center w-24 h-10 bg-red-500 text-slate-50 rounded-lg"
+    className="flex items-center justify-center w-3/4 h-10 bg-red-500 text-slate-50 rounded-lg"
   >
     <button
       onClick={() => onAction()}

@@ -32,19 +32,10 @@ function Modal({id = 'modal', onClose, deleteButton }: ModalProps) {
         <h1 className="text-2xl font-bold">
           Deseja Excluir?
         </h1>
-        
-        <div className="flex gap-4">
-          <ModalButton 
-            name="Excluir"
-            onAction={() => deleteButton()}
-          />
-          <ModalButton 
-            color="rgb(55 65 81)"
-            name="Cancelar"
-            onAction={() => onClose()}
-          />
-        </div>
-
+        <ModalButton 
+          name="Excluir"
+          onAction={() => deleteButton()}
+        />
       </div>
     </div>
   )
