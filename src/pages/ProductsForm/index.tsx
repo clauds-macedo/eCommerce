@@ -43,17 +43,6 @@ function ProductsForm() {
     reset()
   }
 
-  const deleteProduct = async (id: string) => {
-    try {
-      await deleteDoc(doc(db, 'products', id))
-      alert('Deletado com Sucesso!')
-      window.location.reload()      
-
-    } catch (error) {
-      console.log(error);     
-    }
-  }
-
   const handleDeleteChangePageButton = () => {
     if(!deletePressed) {
       setDeletePressed(true)
