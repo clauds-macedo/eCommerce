@@ -20,9 +20,9 @@ interface FormData {
 }
 
 function ProductsForm() {
-  const [deletePressed, setDeletePressed] = useState<boolean>(false)
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
-  const [productId, setProductId] = useState<string>('')
+  const [deletePressed, setDeletePressed] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [productId, setProductId] = useState('')
   const [products, setProducts] = useState<FormData[]>([])
 
   const itemsCollectionRef = collection(db, "products")
@@ -79,7 +79,7 @@ function ProductsForm() {
       />}
       <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-700  ">
         <div className="flex flex-col justify-center items-center rounded-3xl bg-slate-50 w-3/5 h-4/5 max-h-2xl overflow-y-scroll">
-          {deletePressed ? 
+          {!deletePressed ? 
             <>
               <div className="w-3/5 flex items-center justify-around">
                 <h1 className="text-3xl my-4 font-bold">Cadastro de Produtos</h1>
