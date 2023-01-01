@@ -4,7 +4,9 @@ import {
   collection,
   deleteDoc,
   doc,
+  DocumentData,
   Firestore,
+  getDocs,
   setDoc,
   UpdateData,
   updateDoc,
@@ -30,6 +32,13 @@ const useCollection = ({
     }
   };
 
+  const handleGetDocData = async (): Promise<DocumentData> => {
+    const snaphsot = await getDocs(collectionReference)
+    const data = snaphsot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    console.log(data)
+    return data
+  }
+
   const handleUpdateDoc = async (
     id: string,
     payload: UpdateData<Object> | any
@@ -49,7 +58,7 @@ const useCollection = ({
       console.log(e);
     }
   };
-  return { handleCreateDoc, handleDelDoc, handleUpdateDoc };
+  return { handleCreateDoc, handleGetDocData, handleUpdateDoc, handleDelDoc };
 };
 
 export default useCollection;

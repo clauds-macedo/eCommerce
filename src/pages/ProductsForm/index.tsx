@@ -26,16 +26,12 @@ function ProductsForm() {
   const [productId, setProductId] = useState<string>('')
   const [products, setProducts] = useState<FormData[]>([])
 
-  const itemsCollectionRef = collection(db, "products")
-  const { handleDelDoc, handleCreateDoc, handleUpdateDoc } =  useCollection({ collectionName: "products", database: db });
+  const { handleDelDoc, handleCreateDoc, handleGetDocData } =  useCollection({ collectionName: "products", database: db });
   
   useEffect(() => {
-    const getItems = async () => {
-      const col = collection(db, 'products');
-      const snapshot = await getDocs(col);
-      setProducts(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})) as FormData[])
-    }
-    getItems()
+      (() => {
+        setProducts(handleGetDocData() as unknown as FormData[])
+      })()
   }, [])
   
   const createProduct: SubmitHandler<FormData> = async (data, { reset }) => {
