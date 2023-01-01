@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import {
   query,
   getDocs,
@@ -7,8 +7,10 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { db, app } from "../config/firebase";
+
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
+
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
