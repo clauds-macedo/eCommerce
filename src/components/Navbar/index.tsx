@@ -11,7 +11,7 @@ interface INavProps {
 
 const Navbar = ({ navbarItem, direction, customClassName }: INavProps) => {
   return (
-    <ul className={`flex flex-${direction} align-center gap-7 ${customClassName}`}>
+    <ul className={`flex flex-${direction} align-center gap-7 ${customClassName} text-slate-50`}>
       {navbarItem.map((item, index) => (
         <li key={index}>{item}</li>
       ))}
