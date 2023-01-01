@@ -1,5 +1,15 @@
 import { SubmitHandler } from "@unform/core/typings/types";
-import { addDoc, collection, deleteDoc, doc, Firestore, setDoc, UpdateData, updateDoc, WithFieldValue } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  Firestore,
+  setDoc,
+  UpdateData,
+  updateDoc,
+  WithFieldValue,
+} from "firebase/firestore";
 
 interface IUseCollectionInterface {
   collectionName: string;
@@ -10,23 +20,26 @@ const useCollection = ({
   collectionName,
   database,
 }: IUseCollectionInterface) => {
-
   const collectionReference = collection(database, collectionName);
 
   const handleCreateDoc = async (data: any) => {
     try {
-        await addDoc(collectionReference, data);
+      await addDoc(collectionReference, data);
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
   };
-  
-  const handleUpdateDoc = async (id: string, payload: UpdateData<Object>|any) => {
+
+  const handleUpdateDoc = async (
+    id: string,
+    payload: UpdateData<Object> | any
+  ) => {
     try {
-        await updateDoc(doc(database, collectionName, id), payload);
+      await updateDoc(doc(database, collectionName, id), payload);
+    } catch (e) {
+      console.log(e);
     }
-    catch (e) {console.log(e)}
-  }
+  };
 
   const handleDelDoc = async (id: string) => {
     try {

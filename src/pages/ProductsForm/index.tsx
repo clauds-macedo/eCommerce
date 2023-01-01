@@ -36,7 +36,6 @@ function ProductsForm() {
       setProducts(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})) as FormData[])
     }
     getItems()
-    handleUpdateDoc("x0ldXAcoJKHw7TjJ1uAS", { descricao: { pt: "DANIEL MOREIRA VOCE FALHOU COM ESTA CIDADE "} })
   }, [])
   
   const createProduct: SubmitHandler<FormData> = async (data, { reset }) => {
