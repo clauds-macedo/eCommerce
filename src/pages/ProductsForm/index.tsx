@@ -29,8 +29,8 @@ function ProductsForm() {
   const { handleDelDoc, handleCreateDoc, handleGetDocData } =  useCollection({ collectionName: "products", database: db });
   
   useEffect(() => {
-      (() => {
-        setProducts(handleGetDocData() as unknown as FormData[])
+      (async () => {
+        setProducts(await handleGetDocData() as unknown as FormData[])
       })()
   }, [])
   
