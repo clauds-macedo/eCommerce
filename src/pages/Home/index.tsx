@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="custom-gradient w-screen h-screen overflow-x-hidden md:overflow-hidden">
       <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
-        <div className="flex justify-between items-center w-full px-2">
+        <div className="flex justify-between items-center w-full px-2 text-slate-50">
           <h2>SmartShop</h2>
           <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
         </div>
@@ -65,6 +65,10 @@ const Home = () => {
             <div className="lg:w-full sm:w-80 sm:self-center mb-8">
               <Button
                 borderColor={"white"}
+                borderWidth={1}
+                borderRadius={5}
+                textColor="#fff"
+                padding={4}
                 variant="outline"
                 _hover={{ borderColor: "#B5B9C7", transform: "scale(1.02)" }}
                 transition="all .25s ease"
