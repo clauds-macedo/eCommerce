@@ -7,6 +7,7 @@ import { db } from '../../config/firebase'
 
 import Input from "../../components/Input"
 import Modal from '../../components/Modal'
+import useCollection from '../../hooks/useCollection'
 
 interface FormData {
   id: string
@@ -20,43 +21,22 @@ interface FormData {
 }
 
 function ProductsForm() {
-  const [deletePressed, setDeletePressed] = useState<boolean>(false)
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
-  const [productId, setProductId] = useState<string>('')
+  const [deletePressed, setDeletePressed] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [productId, setProductId] = useState('')
   const [products, setProducts] = useState<FormData[]>([])
 
-  const itemsCollectionRef = collection(db, "products")
-
+  const { handleDelDoc, handleCreateDoc, handleGetDocData } =  useCollection({ collectionName: "products", database: db });
+  
   useEffect(() => {
-    const getItems = async () => {
-      const col = collection(db, 'products');
-      const snapshot = await getDocs(col);
-      setProducts(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})) as FormData[])
-    }
-    getItems()
+      (async () => {
+        setProducts(await handleGetDocData() as unknown as FormData[])
+      })()
   }, [])
   
   const createProduct: SubmitHandler<FormData> = async (data, { reset }) => {
-    try {
-      alert('Cadastrado com Sucesso!')
-      await addDoc(itemsCollectionRef, data)
-    } catch (error) {
-      alert(error)
-    }
-    console.log(data);
-
+    handleCreateDoc(data);
     reset()
-  }
-
-  const deleteProduct = async (id: string) => {
-    try {
-      await deleteDoc(doc(db, 'products', id))
-      alert('Deletado com Sucesso!')
-      window.location.reload()      
-
-    } catch (error) {
-      console.log(error);     
-    }
   }
 
   const handleDeleteChangePageButton = () => {
@@ -72,17 +52,17 @@ function ProductsForm() {
       {isModalVisible && 
         <Modal 
           deleteButton={() => {
-            deleteProduct(productId)
+            handleDelDoc(productId)
             setIsModalVisible(false)
           }} 
           onClose={() => setIsModalVisible(false)}
       />}
       <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-700  ">
         <div className="flex flex-col justify-center items-center rounded-3xl bg-slate-50 w-3/5 h-4/5 max-h-2xl overflow-y-scroll">
-          {deletePressed ? 
+          {!deletePressed ? 
             <>
               <div className="w-3/5 flex items-center justify-around">
-                <h1 className="text-3xl my-4 font-bold">Cadastro de Produtos</h1>
+                <h1 className="text-3xl my-4 font-bold text-gray-700">Cadastro de Produtos</h1>
                 <button onClick={handleDeleteChangePageButton}>
                   <Trash size={28} />
                 </button>
@@ -103,7 +83,7 @@ function ProductsForm() {
 
             <div className="flex flex-col w-full h-full items-center justify-start ">
               <div className="w-3/5 flex items-center justify-between mt-8">
-                <h1 className="text-3xl my-4 font-bold">Deletar Produto</h1>
+                <h1 className="text-3xl my-4 font-bold text-gray-700">Deletar Produto</h1>
                 <button onClick={handleDeleteChangePageButton}>
                   <FilePlus size={28} />
                 </button>
@@ -115,8 +95,8 @@ function ProductsForm() {
                       <div className="flex items-center">
                         <img src={product.imagem_link} alt={product.nome} className="h-24"/>
                         <div className="flex flex-col px-32 absolute">
-                          <h4 className="font-bold">{product.nome}</h4>
-                          <span className=''>{product.descricao.pt}</span>
+                          <h4 className="font-bold text-gray-700">{product.nome}</h4>
+                          <span className='text-gray-700'>{product.descricao.pt}</span>
                         </div>
                       </div>
                       

@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="custom-gradient w-screen h-screen overflow-x-hidden md:overflow-hidden">
       <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
-        <div className="flex justify-between items-center w-full px-2">
+        <div className="flex justify-between items-center w-full px-2 text-slate-50">
           <h2>SmartShop</h2>
           <Divide duration={0.8} onToggle={() => setShownMenu(!shownMenu)} />
         </div>
@@ -44,7 +44,7 @@ const Home = () => {
         {/* Logo */}
         <div className="flex">
           <Icon name="smartwatch" />
-          <h2>SmartShop</h2>
+          <h2 className="text-slate-50">SmartShop</h2>
         </div>
         {/* Links */}
         <Navbar direction={navDirection.ROW} navbarItem={HOME_NAV_LABELS} />
@@ -56,7 +56,7 @@ const Home = () => {
       <div className="flex flex-col h-screen">
         <div className="flex sm:flex-col lg:flex-row gap-x-10 w-screen h-full justify-center justify-self-center p-5">
           <div className="flex align-center justify-center flex-col gap-y-5 sm:w-xl">
-            <h1 className="sm:self-center lg:self-start sm:text-3xl lg:text-6xl sm:max-w-5xl lg:max-w-xl font-bold">
+            <h1 className="sm:self-center lg:self-start sm:text-3xl lg:text-6xl sm:max-w-5xl lg:max-w-xl font-bold text-slate-200">
               {strings.mainText[language]}
             </h1>
             <p className="sm:self-center lg:self-start ml-0.5 text-[#8B8E99] max-w-xl text-sm">
@@ -65,6 +65,10 @@ const Home = () => {
             <div className="lg:w-full sm:w-80 sm:self-center mb-8">
               <Button
                 borderColor={"white"}
+                borderWidth={1}
+                borderRadius={5}
+                textColor="#fff"
+                padding={4}
                 variant="outline"
                 _hover={{ borderColor: "#B5B9C7", transform: "scale(1.02)" }}
                 transition="all .25s ease"
