@@ -8,16 +8,10 @@ interface ModalProps {
   deleteButton: () => void
 }
 
-interface IEventTarget extends React.MouseEvent<Element, MouseEvent> {
-  id: string
-}
-
 function Modal({id = 'modal', onClose, deleteButton }: ModalProps) {
 
-  const handleOutsideClick = (e: IEventTarget) => {
-    if(e.target.id === id)
-      console.log(e.target);
-    
+  const handleOutsideClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+    if(e.currentTarget.id === id) onClose()
   }
 
   return(
