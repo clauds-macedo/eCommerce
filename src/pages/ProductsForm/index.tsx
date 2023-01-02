@@ -1,43 +1,29 @@
-import { doc, collection, getDocs, addDoc, deleteDoc } from 'firebase/firestore'
-import { Scope, SubmitHandler } from '@unform/core'
-import { useEffect, useState } from "react"
+// Utils
 import { Trash, FilePlus } from 'phosphor-react'
-import { Form } from '@unform/web'
+import { IFormData } from "../../utils/types"
+import { useEffect, useState } from "react"
 import { db } from '../../config/firebase'
 
-import Input from "../../components/Input"
-import Modal from '../../components/Modal'
+// Components
 import useCollection from '../../hooks/useCollection'
+import DinamicForm from "../../components/DinamicForm"
+import Modal from '../../components/Modal'
 
-interface FormData {
-  id: string
-  descricao: {
-    pt: string
-    en: string
-  }
-  imagem_link: string
-  nome: string
-  preco: number
-}
 
 function ProductsForm() {
   const [deletePressed, setDeletePressed] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [productId, setProductId] = useState('')
-  const [products, setProducts] = useState<FormData[]>([])
+  const [products, setProducts] = useState<IFormData[]>([])
 
   const { handleDelDoc, handleCreateDoc, handleGetDocData } =  useCollection({ collectionName: "products", database: db });
   
   useEffect(() => {
       (async () => {
-        setProducts(await handleGetDocData() as unknown as FormData[])
+        setProducts(await handleGetDocData() as unknown as IFormData[])
       })()
   }, [])
   
-  const createProduct: SubmitHandler<FormData> = async (data, { reset }) => {
-    handleCreateDoc(data);
-    reset()
-  }
 
   const handleDeleteChangePageButton = () => {
     if(!deletePressed) {
@@ -45,6 +31,11 @@ function ProductsForm() {
       return
     }
     setDeletePressed(false)
+  }
+
+    
+  const createProduct = (data: IFormData) => {
+    handleCreateDoc(data)
   }
 
   return (
@@ -67,16 +58,11 @@ function ProductsForm() {
                   <Trash size={28} />
                 </button>
               </div>
-              <Form onSubmit={createProduct} className="flex flex-col w-1/2">
-                <Input name="nome" type='text' label="name" placeholder="Nome"/>
-                <Input name="preco" type='number'label="price" placeholder="Preço"/>
-                <Scope path="descricao">
-                  <Input name="pt" type='text' label="pt" placeholder="Descrição PT-BR"/>
-                  <Input name="en"  type='text' label="en" placeholder="Descrição EN"/>
-                </Scope>
-                <Input name="imagem_link" type='text' label="image" placeholder="Link da Imagem"/>
-                <button type="submit" className="h-10 my-3 rounded-lg text-white bg-gradient-to-r from-cyan-500 to-blue-500">Enviar</button>
-              </Form>
+              <DinamicForm 
+                formComponent='produtos'
+                onSend={(data) => createProduct(data)}
+              />
+              {/* FORM */}
             </>
           : 
           <>
