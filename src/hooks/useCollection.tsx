@@ -34,9 +34,7 @@ const useCollection = ({
 
   const handleGetDocData = async (): Promise<DocumentData> => {
     const snaphsot = await getDocs(collectionReference)
-    const data = snaphsot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    console.log(data)
-    return data
+    return snaphsot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
   }
 
   const handleUpdateDoc = async (
