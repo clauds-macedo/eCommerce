@@ -10,29 +10,12 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import AuthProvider from "../../auth/login-provider";
-import { db } from "../../config/firebase";
-import useCollection from "../../hooks/useCollection";
-import { IUserInterface } from "../../utils/types";
 
 const Admin = () => {
-  const { auth } = AuthProvider();
-  const { handleGetDocData } = useCollection({ collectionName: "users", database: db });
-
-  const [user, setUser] = React.useState<IUserInterface[]>([]);
-  const loggedInUserInfo = (user.find((userInfo) => userInfo.uid === auth.currentUser?.uid ))
-  
   const navigate = useNavigate();
-  
-  React.useEffect(() => {
-    (async () => {
-        setUser(await handleGetDocData() as unknown as IUserInterface[]);
-    })()
-  }, [])
   return (
-    <div className={`flex w-screen h-screen items-center justify-center gap-10 ${loggedInUserInfo?.admin ? "flex" : "none"}`}>
+    <div className={`flex w-screen h-screen items-center justify-center gap-10`}>
       <Card maxW="sm" shadow={"xl"}>
         <CardBody>
           <Image
