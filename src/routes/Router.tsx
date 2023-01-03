@@ -34,7 +34,7 @@ const suspenseComponent = (child: "home" | "productsForm" | "admin") => (
 );
 
 function Router() {
-  const { auth } = AuthProvider();
+  const { auth, signInWithGoogle } = AuthProvider();
   const { handleGetDocData } = useCollection({
     collectionName: "users",
     database: db,
@@ -50,6 +50,9 @@ function Router() {
       setUser((await handleGetDocData()) as unknown as IUserInterface[]);
     })();
   }, []);
+
+  console.log(loggedInUserInfo)
+
   return (
     <BrowserRouter>
       <Routes>

@@ -19,14 +19,11 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
 const AuthProvider = () => {
-  const [user, setUser] = React.useState<IUserInterface>();
-
   const signInWithGoogle = async () => {
     setPersistence(auth, inMemoryPersistence).then(async () => {
       try {
         const res = await signInWithPopup(auth, googleProvider);
         const user = res.user;
-        setUser({ username: user.displayName, email: user.email });
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
@@ -53,7 +50,6 @@ const AuthProvider = () => {
     db,
     signInWithGoogle,
     logout,
-    user,
   };
 };
 
