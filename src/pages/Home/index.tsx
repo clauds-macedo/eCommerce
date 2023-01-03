@@ -18,7 +18,6 @@ import { Divide } from "hamburger-react";
 const Home = () => {
   const { language } = React.useContext(AppContext);
   const [shownMenu, setShownMenu] = React.useState(false);
-
   return (
     <div className="custom-gradient w-screen h-screen overflow-x-hidden md:overflow-hidden">
       <div className={`sm:flex md:hidden ${shownMenu ? "bg-neutral-700" : ""}`}>
@@ -74,6 +73,8 @@ const Home = () => {
                 transition="all .25s ease"
                 width={"100%"}
                 opacity={shownMenu ? "0.05" : "1"}
+                marginLeft={0.5}
+                onClick={() => {}}
               >
                 {strings.readMore[language]}
               </Button>

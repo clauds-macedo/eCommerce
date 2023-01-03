@@ -7,8 +7,7 @@ import { fields } from "../utils/consts";
 
 type FormProps = {
   onSend: (e: IFormData) => void,
-  formComponent: string
-
+  formComponent: "produtos" | "cartao"
 }
 
 interface formInfo {
@@ -19,9 +18,6 @@ interface formInfo {
 }
 
 function DinamicForm({ onSend, formComponent}: FormProps) {
-
-  console.log(fields);
-  
 
   const forms: {[key: string]: formInfo[]} = {
     produtos: fields.produtos,

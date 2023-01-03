@@ -8,3 +8,11 @@ export interface IFormData {
   nome: string
   preco: number
 }
+
+export interface IUserInterface {
+  admin?: boolean;
+  authProvider: string;
+  id: string;
+  name: string;
+  uid: string;
+}

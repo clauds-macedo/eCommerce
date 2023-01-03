@@ -1,13 +1,13 @@
 import './App.css'
-import { db } from './config/firebase'
-import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
-import { signInWithGoogle } from './auth/login-provider'
 import Router from './routes/Router'
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <Router/>
+    <ChakraProvider>
+      <Router/>
+    </ChakraProvider>
   )
 }
 

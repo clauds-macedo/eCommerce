@@ -1,6 +1,6 @@
 // Utils
 import { Trash, FilePlus } from 'phosphor-react'
-import { IFormData } from "../../utils/types"
+import { IFormData, IUserInterface } from "../../utils/types"
 import { useEffect, useState } from "react"
 import { db } from '../../config/firebase'
 
@@ -8,19 +8,24 @@ import { db } from '../../config/firebase'
 import useCollection from '../../hooks/useCollection'
 import DinamicForm from "../../components/DinamicForm"
 import Modal from '../../components/Modal'
+import { useLocation } from 'react-router-dom'
+import AuthProvider from '../../auth/login-provider'
 
 
 function ProductsForm() {
-  const [deletePressed, setDeletePressed] = useState(false)
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  const [productId, setProductId] = useState('')
-  const [products, setProducts] = useState<IFormData[]>([])
+  const [deletePressed, setDeletePressed] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [productId, setProductId] = useState('');
+  const [products, setProducts] = useState<IFormData[]>([]);
+  const [user, setUser] = useState<IUserInterface[]>([]);
 
+  const location = useLocation();
+  
   const { handleDelDoc, handleCreateDoc, handleGetDocData } =  useCollection({ collectionName: "products", database: db });
   
   useEffect(() => {
       (async () => {
-        setProducts(await handleGetDocData() as unknown as IFormData[])
+        setProducts(await handleGetDocData() as unknown as IFormData[]);
       })()
   }, [])
   
@@ -39,6 +44,7 @@ function ProductsForm() {
   }
 
   return (
+    
     <>
       {isModalVisible && 
         <Modal 
@@ -59,7 +65,7 @@ function ProductsForm() {
                 </button>
               </div>
               <DinamicForm 
-                formComponent='produtos'
+                formComponent={location.pathname === "/admin/cards" ? "cartao" : "produtos"}
                 onSend={(data) => createProduct(data)}
               />
               {/* FORM */}
